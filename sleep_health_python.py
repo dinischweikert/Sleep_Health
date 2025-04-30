@@ -28,10 +28,48 @@
 # | `Daily Steps` | The average number of steps the person takes per day. |
 # | `Sleep Disorder` | The presence or absence of a sleep disorder in the person (None, Insomnia, Sleep Apnea). |
 
-# In[1]:
-
-
-# Start coding here
-# Use as many cells as you need
+###############################################################################################################################
+# import packages
+###############################################################################################################################
 import pandas as pd
 
+pd.set_option('display.max_columns', None)
+
+###############################################################################################################################
+# read in data
+###############################################################################################################################
+sleep = pd.read_csv('sleep_health_data.csv')
+
+###############################################################################################################################
+# Review Data
+###############################################################################################################################
+print(sleep.columns)
+print(sleep.shape)
+print(sleep.dtypes)
+print(sleep.describe())
+print(sleep.head())
+
+###############################################################################################################################
+# Occupation with lowest average sleep duration
+###############################################################################################################################
+duration_occ_ave = sleep.groupby(['Occupation'])[['Sleep Duration']].mean().reset_index().sort_values(by='Sleep Duration')
+lowest_sleep_occ = duration_occ_ave['Occupation'].iloc[0]
+
+###############################################################################################################################
+# Occupation with lowest average sleep quality
+###############################################################################################################################
+quality_occ_ave = sleep.groupby(['Occupation'])[['Quality of Sleep']].mean().reset_index().sort_values(by='Quality of Sleep')
+lowest_sleep_quality_occ = quality_occ_ave['Occupation'].iloc[0]
+# boolean value if occupation with lowers sleep duration also has the lowest sleep quality
+same_occ = lowest_sleep_occ==lowest_sleep_quality_occ
+
+###############################################################################################################################
+# How does BMI affect insomnia rates
+###############################################################################################################################
+
+sleep['Insomnia?'] = sleep['Sleep Disorder'] == 'Insomnia'
+bmi_insomnia_df =sleep.groupby(['BMI Category'])[['Insomnia?']].mean()
+bmi_insomnia_df['Insomnia?'] = bmi_insomnia_df['Insomnia?'].round(2)
+
+# get dictionary of bmi to insomnia ratios
+bmi_insomnia_ratios = bmi_insomnia_df['Insomnia?'].to_dict()
