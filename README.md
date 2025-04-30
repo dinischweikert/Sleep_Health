@@ -21,3 +21,8 @@ The dataset includes 13 columns covering sleep duration, quality, disorders, exe
 |Heart Rate (bpm)	                      | The average resting heart rate of the person in beats per minute.                                        |
 |Daily Steps	                          | The average number of steps the person takes per day.                                                    |
 |Sleep Disorder	                        | The presence or absence of a sleep disorder in the person (None, Insomnia, Sleep Apnea).                 |
+
+## Analysis:
+* Which occupation has the lowest average sleep duration?
+* Which occupation has th elowers average sleep quality?
+* How does BMI affect sleep disorder rates?
