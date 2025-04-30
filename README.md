@@ -24,5 +24,5 @@ The dataset includes 13 columns covering sleep duration, quality, disorders, exe
 
 ## Analysis:
 * Which occupation has the lowest average sleep duration?
-* Which occupation has th elowers average sleep quality?
-* How does BMI affect sleep disorder rates?
+* Which occupation has the lowest average sleep quality?
+* How does BMI affect insomnia rates?
